@@ -29,6 +29,6 @@ class CreatePackagePermissionTable extends Migration
      */
     public function down()
     {
-        Schema::dropSoftDeletes('package_permission');
+        Schema::dropIfExists('package_permission');
     }
 }

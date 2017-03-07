@@ -7,12 +7,6 @@
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
                         <div class="membership-page-title">
-                            <?php if(!isset($_SESSION)){session_start();}
-                            if(isset($_SESSION['Message'])){ ?>
-                                <h3 class="page-title alert alert-success">{{ $_SESSION['Message'] }}</h3>
-
-                                <?php } unset($_SESSION['Message']) ?>
-
                             <h1 class="page-title"> Complete your order </h1>
                             <p class="page-subtitle"> Please enter your Account and Billing information to complete your membership! </p>
                         </div>

@@ -28,6 +28,6 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropSoftDeletes('permissions');
+        Schema::dropIfExists('permissions');
     }
 }

@@ -15,19 +15,24 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->string('mobile');
-            $table->string('fax');
-            $table->string('address');
-            $table->string('zipcode');
-            $table->string('country_id');
-            $table->dateTime('pssword_expired_date');
-            $table->dateTime('last_login');
-            $table->string('status');
-            $table->string('type');
+            $table->string('FirstName');
+            $table->string('lastname');
+            $table->string('DisplayName');
+            $table->string('emailAddress');
+            $table->string('ConatctNumber')->nullable();
+            $table->string('ConatctNumber1');
+            $table->string('ConatctNumber2')->nullable();
             $table->string('password');
+            $table->string('DomainName')->nullable();
+            $table->string('country_id')->nullable();
+            $table->string('CityName')->nullable();
+            $table->dateTime('last_login')->nullable();
+            $table->string('AgencyName')->nullable();
+            $table->string('type')->nullable();
+            $table->string('BusinessType')->commit('1 For Indivdual. 2 for Real State Or Business')->nullable();
+            $table->string('package_type')->nullable();
+            $table->string('token')->nullable();
+            $table->boolean('isActive')->default(0)->commit('0 for Not Active ,1 For Active');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
@@ -41,6 +46,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropSoftDeletes('users');
+        Schema::dropIfExists('users');
     }
 }

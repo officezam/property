@@ -208,8 +208,17 @@
             </div>
             <div class="header-right">
                 <div class="user">
-                    <a href="#" data-toggle="modal" data-target="#pop-login">Sign In / Register</a>
-                    <a href="add-new-property.html" class="btn btn-default">Create Listing</a>
+
+                    <?php session_start();
+                    if(isset($_SESSION['Email'])){ ?>
+                        <a href="#" data-toggle="modal" data-target="#pop-login">Logout</a>
+                        <a href="#" class="btn btn-default">Create Listing</a>
+                    <?php }else{ ?>
+
+
+                    <a href="#" data-toggle="modal" data-target="#pop-login"> Register</a>
+                        <?php } ?>
+
                 </div>
             </div>
         </div>

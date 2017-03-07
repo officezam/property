@@ -29,6 +29,6 @@ class CreatePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropSoftDeletes('packages');
+        Schema::dropIfExists('packages');
     }
 }

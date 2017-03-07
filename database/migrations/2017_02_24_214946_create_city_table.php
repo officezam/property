@@ -29,6 +29,6 @@ class CreateCityTable extends Migration
      */
     public function down()
     {
-        Schema::dropSoftDeletes('city');
+        Schema::dropIfExists('city');
     }
 }

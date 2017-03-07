@@ -293,5 +293,70 @@
             google.maps.event.addDomListener( window, 'load', initMap );
         })(jQuery)
     </script>
+ <script>
+     $(document).ready(function(){
+
+         $( "#one" ).click(function() {
+             $('.one').removeClass('hide');
+             $('#page-block-1').addClass('active')
+             $('.two').addClass('hide');
+             $('.three').addClass('hide');
+             $('.four').addClass('hide');
+             $('#page-block-2').removeClass('active')
+             $('#page-block-3').removeClass('active')
+             $('#page-block-4').removeClass('active')
+
+
+         });
+
+         $( "#two" ).click(function() {
+             $('.two').removeClass('hide');
+             $('#page-block-2').addClass('active')
+             $('.one').addClass('hide');
+             $('.three').addClass('hide');
+             $('.four').addClass('hide');
+             $('#page-block-1').removeClass('active')
+             $('#page-block-3').removeClass('active')
+             $('#page-block-4').removeClass('active')
+         });
+         $( "#three" ).click(function() {
+             $('.three').removeClass('hide');
+             $('#page-block-3').addClass('active')
+             $('.one').addClass('hide');
+             $('.two').addClass('hide');
+             $('.four').addClass('hide');
+             $('#page-block-2').removeClass('active')
+             $('#page-block-1').removeClass('active')
+             $('#page-block-4').removeClass('active')
+         });
+         $( "#four" ).click(function() {
+             $('.four').removeClass('hide');
+             $('#page-block-4').addClass('active')
+             $('.one').addClass('hide');
+             $('.two').addClass('hide');
+             $('.three').addClass('hide');
+             $('#page-block-2').removeClass('active')
+             $('#page-block-3').removeClass('active')
+             $('#page-block-1').removeClass('active')
+         });
+
+//BusinessType
+
+
+
+         @if(old('BusinessType') == 2)
+         $('.RealBusiness').removeClass('hide');
+         @endif
+
+
+         $('#BusinessType').on('change', function(){
+             if($(this).val() == 2){
+                 $('.RealBusiness').removeClass('hide');
+             }else{
+                 $('.RealBusiness').addClass('hide');
+             }
+         });
+     });
+ </script>
 </body>
 </html>

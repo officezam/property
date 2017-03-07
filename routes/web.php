@@ -18,6 +18,10 @@ Route::group(array('prefix' => 'admin'), function ()
         return view('admin.dashboard');
     });
 
+    Route::get('/', function ()
+    {
+        return view('admin.dashboard');
+    });
     Route::resource('add_package', 'PackageController');
     Route::resource('permission', 'PermissionController');
     Route::resource('packagepermission', 'packagePermissionController');
@@ -67,3 +71,11 @@ Route::get('compare_properties','PagesController@compare_properties');
 Route::get('contact_us','PagesController@contact_us');
 Route::get('terms_and_conditions','PagesController@terms_and_conditions');
 Route::get('privacy','PagesController@privacy');
+Route::get('Signup',array('as' => 'Signup', 'uses' =>'SignupController@Signup'));
+Route::get('SignupForm', array('as' => 'SignupForm', 'uses' =>'SignupController@SignupForm'));
+Route::get('/emailVerification/{token?}', array('as' =>'emailVerification', 'uses' => 'SignupController@emailVerification'));
+Route::get('Signout',array('as' => 'Signout', 'uses' =>'SignupController@Signout'));
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
