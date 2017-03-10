@@ -35,6 +35,28 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    /**
+     * This method is used to logout the user
+     **/
+    public function logoutUser()
+    {
+        $this->updateLogoutTime();
+        Auth::logout();
+    }
+
+
+    /**
+     * This method is used to update the logout time of user
+     */
+    public function updateLogoutTime()
+    {
+        $user = Auth::User();
+        $user->last_login = Carbon::now();
+        $user->save();
+    }
+
+
     public function SignupForm($request){
         //echo $request->_token;exit;
 

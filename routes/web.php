@@ -22,7 +22,7 @@ Route::group(array('prefix' => 'admin'), function ()
     Route::get('/logout', ['as' => 'logout','uses' => 'LoginController@logout']);
 
     Route::get('/', ['as' => 'login','uses' => 'LoginController@index']);
-    Route::post('login', ['as' => 'login','uses' => 'LoginController@login'  ]);
+    Route::post('/login', ['as' => 'login','uses' => 'LoginController@login'  ]);
     Route::get('/home', function (){ return view('admin.dashboard');  });
     Route::get('/dashboard', function (){return view('admin.dashboard');});
     Route::resource('add_package', 'PackageController');
