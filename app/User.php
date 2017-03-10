@@ -5,7 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
-
+use Carbon\Carbon;
+use App\Interfaces\SaveObjectsInterface;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+use App\Services\CommonService;
+use App\Roles;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -50,4 +55,37 @@ class User extends Authenticatable
         $lastId = self::create($inputData);
         return $lastId->id;
     }
+
+    /**
+     * This method is used to login existing User
+     * @param $request
+     * @return Collection
+     */
+    public function loginUser($request)
+    {
+        $remember = $request['remember'] ? $request['remember'] : 0; /*use for remember me functionality*/
+        $email = $request['email'];
+        $password = $request['password'];
+       // $users = $this->where('email', '=', $email)->get();
+
+        if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
+
+           // echo 'Auth Run';exit;
+            if (Auth::User()->type == 'admin') {
+                //Auth::logout();
+                return collect(['status' => 'success', 'redirectTo' => '/home']);            }
+            if (!Auth::User()->permanent || Auth::User()->permanent < 1  && strtotime(Auth::User()->password_expire_date) < 0) {
+                return collect(['status' => 'success', 'redirectTo' => '/home']); // logout the user if not permanent and the password is expired
+            }
+            if (Auth::User()->permanent != 1 && Auth::User()->password_expire_date < Carbon::now()) {
+                Auth::logout();
+                return collect(['status' => 'failure', 'message' => 'Your password is expired..!']);
+            }
+            return collect(['status' => 'success', 'redirectTo' => '/home']);
+        }else{
+            echo 'Autn Not Run';exit;
+        }
+        return collect(['status' => 'failure', 'message' => 'Invalid Credentials']);
+    }
+
 }

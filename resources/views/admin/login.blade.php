@@ -22,25 +22,25 @@
                     <a class="hiddenanchor" id="toforgot"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form action="route('admin.login')" autocomplete="on" method="post">
+                            <form action="login" autocomplete="on" method="post">
                                 <h3 class="black_bg">
                                     {{--<img src="{{asset('assets/img/logo.png')}}" alt="josh logo">--}}
                                     <br>Admin Log in</h3>
                                 <p>
                                     <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
-                                        E- mail or Username
+                                        E- mail
                                     </label>
-                                    <input id="username" name="username" required type="text" placeholder="username or e-mail" />
+                                    <input id="username" name="email" required type="text" placeholder="Enter Email" value="" />
                                 </p>
                                 <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                                 <p>
                                     <label style="margin-bottom:0px;" for="password" class="youpasswd"> <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
                                         Password
                                     </label>
-                                    <input id="password" name="password" required type="password" placeholder="eg. X8df!90EO" />
+                                    <input id="password" name="password" value="" required type="password" placeholder="eg. X8df!90EO" />
                                 </p>
                                 <p class="keeplogin">
-                                    <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
+                                    <input type="checkbox" name="remember" id="loginkeeping"  />
                                     <label for="loginkeeping">Keep me logged in</label>
                                 </p>
                                 <p class="login button">
