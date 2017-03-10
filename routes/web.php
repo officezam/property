@@ -13,15 +13,22 @@
 
 Route::group(array('prefix' => 'admin'), function ()
 {
+
+    Route::get('/', [
+        'as' => 'login',
+        'uses' => 'LoginController@index'
+    ]);
+    Route::post('/login', [
+        'as' => 'login',
+        'uses' => 'LoginController@login'
+    ]);
+
     Route::get('/dashboard', function ()
     {
         return view('admin.dashboard');
     });
 
-    Route::get('/', function ()
-    {
-        return view('admin.dashboard');
-    });
+
     Route::resource('add_package', 'PackageController');
     Route::resource('permission', 'PermissionController');
     Route::resource('packagepermission', 'packagePermissionController');

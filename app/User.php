@@ -17,8 +17,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'FirstName', 'lastname', 'DisplayName','emailAddress','ConatctNumber1','password', 'BusinessType','token',
-        'DomainName','AgencyName','CityName','ConatctNumber','ConatctNumber2','package_type'
+        'first_name', 'last_name', 'DisplayName','email','password', 'BusinessType','remember_token',
+        'cell_phone','city','package_type','type',
     ];
 
     /**
@@ -31,24 +31,22 @@ class User extends Authenticatable
     ];
 
     public function SignupForm($request){
-        $inputData = [
-            'FirstName' => $request->FirstName,
-            'lastname' => $request->lastname,
-            'DisplayName' => $request->DisplayName,
-            'emailAddress' => $request->emailAddress,
-            'ConatctNumber1' => '123',//$request->ConatctNumber1,
-            'DomainName' => 'domain Name',//$request->DomainName,
-            'AgencyName' => 'Agency Name',//$request->AgencyName,
-            'CityName' => $request->CityName,
-            'ConatctNumber' => $request->ConatctNumber,
-            'password' => $request->password,
-            'ConatctNumber2' => '123',//$request->ConatctNumber2,
-            'BusinessType' => $request->BusinessType,
-            'token' => $request->token,
-            'package_type' => $request->package_type,
+        //echo $request->_token;exit;
 
+         //dd($request);
+        $inputData = [
+            'first_name'    => $request->FirstName,
+            'last_name'     => $request->lastname,
+            'DisplayName'   => $request->DisplayName,
+            'email'         => $request->emailAddress,
+            'city'          => $request->CityName,
+            'cell_phone'    => $request->ConatctNumber,
+            'password'      => bcrypt($request->password),
+            'BusinessType'  => $request->BusinessType,
+            'type'          => 'admin',
+            'remember_token'=> $request->_token
         ];
-//        dump($inputData);
+      //dump($inputData);
         $lastId = self::create($inputData);
         return $lastId->id;
     }
