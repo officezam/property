@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'officezam@gmail.com'),
-        'name' => env('Test Email From Amir Shahzad', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'joinmyseo@gmail.com'),
+        'name' => env('Email From Property Admin', 'Verification Email'),
     ],
 
     /*

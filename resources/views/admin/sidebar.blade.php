@@ -100,7 +100,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="form_layouts.html">
+                            <a href="edit_property.blade.php">
                                 <i class="fa fa-angle-double-right"></i>
                                 Form Layouts
                             </a>
@@ -453,25 +453,25 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="users.html">
+                            <a href="users.blade.php">
                                 <i class="fa fa-angle-double-right"></i>
                                 Users
                             </a>
                         </li>
                         <li>
-                            <a href="adduser.html">
+                            <a href="adduser.blade.php">
                                 <i class="fa fa-angle-double-right"></i>
                                 Add New User
                             </a>
                         </li>
                         <li>
-                            <a href="view_user.html">
+                            <a href="view_user.blade.php">
                                 <i class="fa fa-angle-double-right"></i>
                                 View User
                             </a>
                         </li>
                         <li>
-                            <a href="deleted_users.html">
+                            <a href="deleted_users.blade.php">
                                 <i class="fa fa-angle-double-right"></i>
                                 Deleted Users
                             </a>

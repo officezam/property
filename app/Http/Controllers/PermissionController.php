@@ -15,6 +15,7 @@ class PermissionController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
         $this->PermissionModel = new PermissionModel();
     }
 
@@ -84,8 +85,10 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        echo 'edit';
-        exit;
+
+        $edit =$this->PermissionModel->where('id', '=', $id)->first();
+        //dd($edit);
+        return view('admin.edit_permission',  ['edit' => $edit ]);
     }
 
     /**
@@ -97,8 +100,10 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo 'update';
-        exit;
+        if($this->PermissionModel->Edit($request) == true)
+        {
+            return redirect()->action('PermissionController@index');
+        }
     }
 
     /**
@@ -109,7 +114,7 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        echo 'destroy';
-        exit;
+        $this->PermissionModel->destroy($id);
+        return redirect()->action('PermissionController@index');
     }
 }

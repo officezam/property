@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Login | Josh Admin Template</title>
+    <title>Login </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- global level css -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
@@ -22,10 +22,16 @@
                     <a class="hiddenanchor" id="toforgot"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form action="login" autocomplete="on" method="post">
+                            <form action="/admin/login" autocomplete="on" method="post">
                                 <h3 class="black_bg">
                                     {{--<img src="{{asset('assets/img/logo.png')}}" alt="josh logo">--}}
                                     <br>Admin Log in</h3>
+                                @if(Session::has('failure'))
+                                    <div></div>
+                                    <div class="alert alert-danger" id="errorMessage" style="display: block">
+                                        {{Session::get('failure')}}
+                                    </div>
+                                @endif
                                 <p>
                                     <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>
                                         E- mail

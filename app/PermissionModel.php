@@ -30,6 +30,12 @@ class PermissionModel extends Model
     }
 
 
+    public function Edit($request)
+    {
+        $this->where('id', $request->id)
+            ->update(['name' => $request->permissionname ]);
+        return true;
+    }
 
     /**
      *The roles that have permissions.

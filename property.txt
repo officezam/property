@@ -1,0 +1,17 @@
+Login Details
+Username: thewhole
+Password: E77kJfe7i7
+Control Panel URL: http://104.151.233.210:2082/
+Once your domain has propogated, you may also use http://www.thewholefact.com: 2082/
+
+
+FTP Username: amirshahzad40@thewholefact.com
+FTP server: ftp.thewholefact.com
+FTP pass       : 4c*U]{u8&%Zm
+
+
+ssh 
+Key Name  : property
+pass      : 2hhZG7UV_lwM
+type      : RSA
+Size      : 4096

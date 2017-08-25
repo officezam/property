@@ -31,7 +31,6 @@
         </section>
         <!--section ends-->
         <section class="content">
-
             <!-- row-->
             <div class="row">
 
@@ -46,59 +45,53 @@
                     </div>
                 @endif
 
+                <form action="{{ url('admin/packagepermission') }}" method="post"  class="form-horizontal">
+                    {!! csrf_field() !!}
+                    <input type="hidden" name="package_id" value="{{ $package[0]->id }}">
 
-                <div class="col-lg-12">
-                    <div class="panel-body">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    <span class="glyphicon glyphicon-hand-right"></span>
-                                   Select/Unselect Package Permissions
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">Brazil</label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">Netherlands</label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">France</label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">Germany</label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">Others</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="panel-footer text-center">
-                                <button type="button" class="btn btn-primary btn-block btn-sm">Vote</button>
-                                <a href="#" class="small">View Result</a>
+                    <div class="col-lg-12">
+                        <div class="panel-body">
+                            <button class="panel-body btn btn-primary">
+                                <span class="glyphicon glyphicon-hand-right"></span>
+                                {{   $package[0]->name }}
+                            </button>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <span class="glyphicon glyphicon-hand-right"></span>
+                                        Select/Unselect Package Permissions
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    @if (Session::has('Success'))
+                                        <div class="alert alert-info">{{ Session::get('Success') }}</div>
+                                    @endif
+
+                                    <ul class="list-group">
+                                        <?php $count = 0; ?>
+                                        @foreach($permission as $key => $value)
+
+                                            <li class="list-group-item">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input name="permission_id[]" type="checkbox" @if(isset($permission_id[$value->id])) checked @endif value="{{ $value->id }}" >{{ $value->name }}</label>
+                                                </div>
+                                            </li>
+                                            <?php $count++; ?>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="panel-footer text-center">
+                                    <button type="SUBMIT" class="btn btn-primary btn-block btn-sm">Save</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-                </div>
+                </form>
             </div>
 
 

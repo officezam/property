@@ -1,3 +1,5 @@
+
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,7 +8,7 @@
     <meta name="_token" content="{{csrf_token()}}">
     {{--*/ $page =  Request::path() == '/' ? 'Home' : ucwords(str_replace('-', ' ', Request::path()))  /*--}}
 
-    <title>{{env('project_name')}} -Real Estate </title>
+    <title> User-Pannel Real Estate </title>
 
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

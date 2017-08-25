@@ -17,6 +17,7 @@ class PackageController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
         $this->PackageModel = new PackageModel();
     }
 
@@ -70,7 +71,6 @@ class PackageController extends Controller
      */
     public function show($id)
     {
-        echo 'show';
         return view('admin.add_package');
     }
 
@@ -82,7 +82,9 @@ class PackageController extends Controller
      */
     public function edit($id)
     {
-        echo 'edit';exit;
+        $edit =$this->PackageModel->where('id', '=', $id)->first();
+        //dd($edit);
+        return view('admin.edit_package',  ['edit' => $edit ]);
     }
 
     /**
@@ -94,7 +96,12 @@ class PackageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo 'update';exit;
+        if($this->PackageModel->Edit($request) == true)
+        {
+            $data =$this->PackageModel->get();
+            return view('admin.packages',  ['data' => $data])->with('Message' , 'Your Package Created Successfully...!');
+
+        }
     }
 
     /**
@@ -105,6 +112,7 @@ class PackageController extends Controller
      */
     public function destroy($id)
     {
-        echo 'destroy';exit;
+        $city = $this->PackageModel->destroy($id);
+        return redirect()->action('PackageController@index');
     }
 }

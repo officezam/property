@@ -33,12 +33,29 @@ class PackageModel extends Model
     }
 
 
+
+    public function Edit($request)
+    {
+        $this->where('id', $request->id)
+            ->update(['name' => $request->packagename , 'description' => $request->description]);
+        return true;
+    }
+
+
+
+
     /**
      * The Package that belong to the Permissions.
      */
     public function permissions()
     {
-        return $this->belongsToMany('App\PermissionModel');
+        return $this->belongsToMany('App\PermissionModel', 'package_permission', 'package_id', 'permission_id');
     }
+
+
+    public function getAllPackagesWithDetails(){
+        return $this->with("permissions");
+    }
+
 
 }

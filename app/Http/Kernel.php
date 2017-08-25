@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\CheckUsername;
+use App\Http\Middleware\RolesAndPermissionMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -56,5 +59,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'rolesandpermission' => RolesAndPermissionMiddleware::class,
+        'myAuth' => AuthMiddleware::class,
+        'CheckUsername' => CheckUsername::class,
     ];
 }

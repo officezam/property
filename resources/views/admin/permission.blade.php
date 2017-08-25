@@ -40,7 +40,7 @@
                 <!-- row-->
                 <div class="row">
 
-                    <div class="col-lg-12">
+                    <div class="panel-body">
                         <a href="{{ url('admin/permission/create') }}" >
                         <button class="btn btn-primary btn-lg pull-right" >
                             Add New Package List
@@ -71,6 +71,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Package Permission List Name</th>
+                                            <th>Action</th>
+
 
                                         </tr>
                                     </thead>
@@ -81,6 +83,8 @@
                                         <tr>
                                             <td><?php echo $user['id']; ?></td>
                                             <td><?php echo $user['name']; ?></td>
+                                            <td> <a href="/admin/permission/{{ $user['id'] }}/edit" class="btn" > <i class="fa fa-edit">Edit</i></a>
+                                                <a href="/admin/permdestroy/{{ $user['id'] }}" class="btn" > <i class="fa fa-trash-o">Delete</i></a></td>
 
                                         </tr>
                                     <?php

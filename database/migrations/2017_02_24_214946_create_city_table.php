@@ -17,6 +17,8 @@ class CreateCityTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('zipcode');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
             $table->softDeletes();
         });

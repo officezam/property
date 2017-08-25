@@ -51,7 +51,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'domain' => env('APP_DOMAIN'),
+
+    'url' => 'http://' . env('APP_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +164,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Chencha\Share\ShareServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -176,6 +178,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        willvincent\Rateable\RateableServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+
 
     ],
 
@@ -225,7 +230,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Share' => Chencha\Share\ShareFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

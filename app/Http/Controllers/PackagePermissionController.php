@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\PackageModel;
 use App\PermissionModel;
 use App\PackagePermissionModel;
+use Illuminate\Support\Facades\Redirect;
 
 class PackagePermissionController extends Controller
 {
@@ -18,8 +19,10 @@ class PackagePermissionController extends Controller
      */
     public function __construct()
     {
+        //$this->middleware('auth');
         $this->PermissionModel = new PermissionModel();
         $this->PackageModel = new PackageModel();
+        $this->PackagePermissionModel = new PackagePermissionModel;
     }
 
 
@@ -32,10 +35,10 @@ class PackagePermissionController extends Controller
     public function index()
     {
         $packages   = $this->PackageModel->get();
-
         return view('admin/package_permission',  ['package' => $packages ]);
 
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -44,7 +47,7 @@ class PackagePermissionController extends Controller
      */
     public function create()
     {
-        $permission =$this->PackageModel->find($id)->name;
+        //$permission =$this->PackageModel->find($id)->name;
         $packages   = $this->PackageModel->get();
         echo 'create';
         exit;
@@ -58,8 +61,11 @@ class PackagePermissionController extends Controller
      */
     public function store(Request $request)
     {
-        echo 'store';
-        exit;
+        $output = $this->PackagePermissionModel->PackagePermission($request);
+       if($output == true){
+           return Redirect::back()->with('Success', 'Package Listing Successfully Saved ');
+       }
+
     }
 
     /**
@@ -70,8 +76,16 @@ class PackagePermissionController extends Controller
      */
     public function show($id)
     {
-        echo 'show';
-        exit;
+        //dd($this->PackageModel->permissions()->get());
+        $package = $this->PackageModel->where('id', '=', $id)->get();
+        $permission = $this->PermissionModel->get();
+        $package_permission = $this->PackagePermissionModel->where('package_id', '=', $id)->get();
+        $permission_id = [];
+        foreach($package_permission as $perm)
+        {
+            $permission_id[$perm->permission_id] = $perm->permission_id;
+        }
+        return view('admin.package_permission_list',  ['package' => $package , 'permission' => $permission , 'permission_id' => $permission_id]);
     }
 
     /**
